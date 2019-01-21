@@ -1,4 +1,4 @@
 uses a custom hyde theme...
 
-sudo pelican content -s pelicanconf.py -t ~/pelican-themes/hyde
+sudo pelican content -s pelicanconf.py -t ./hyde
 sudo pelican --listen
