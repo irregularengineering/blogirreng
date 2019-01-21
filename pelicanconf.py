@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Irregular Engineering'
-SITENAME = 'Blogirreng'
+SITENAME = ''
 SITEURL = ''
 
 PATH = 'content'
