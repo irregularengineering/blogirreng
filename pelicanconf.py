@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Irregular Engineering'
-SITENAME = ''
+SITENAME = 'An Irregular Blog'
 SITEURL = ''
 
 PATH = 'content'
@@ -22,14 +22,14 @@ AUTHOR_FEED_RSS = None
 THEME = "./hyde"
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+# LINKS = (('Pelican', 'http://getpelican.com/'),
+#          ('Python.org', 'http://python.org/'),
+#          ('Jinja2', 'http://jinja.pocoo.org/'),
+#          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+# SOCIAL = (('You can add links in your config file', '#'),
+#           ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 10
 

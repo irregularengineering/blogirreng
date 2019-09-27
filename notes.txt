@@ -1,4 +1,0 @@
-uses a custom hyde theme...
-
-sudo pelican content -s pelicanconf.py -t ./hyde
-sudo pelican --listen
