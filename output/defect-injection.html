@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href="https://gmpg.org/xfn/11" rel="profile">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- Enable responsiveness on mobile devices-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+		<title>An Irregular Blog</title>
+
+		<!-- CSS -->
+		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
+		<link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Abril+Fatface|PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
+
+		<link rel="stylesheet" href="/theme/css/poole.css" />
+		<link rel="stylesheet" href="/theme/css/hyde.css" />
+		<link rel="stylesheet" href="/images/ieng.icocss/syntax.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		    <!-- Add Font Awesome-->
+		<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+		<link rel='shortcut icon' type='image/x-icon' href='/theme/images/ieng.ico?v=3' />
+
+		<!-- RSS -->
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	</head>
+
+	<body class="theme-base-09">
+<div class="sidebar">
+	<div class="container sidebar-sticky">
+		<div class="sidebar-about">
+
+			<h1>
+				<a href="/">
+					An
+					Irregular<i class="fas fa-arrow-alt-circle-left"></i>Blog
+				</a>
+			</h1>
+			<p class="lead"></p>
+			<p class="lead"> </p>
+			<p></p>
+		</div>
+		<nav class="sidebar-nav">
+			<a class="sidebar-nav-item" href="mailto:paulATirregularengineering.com">
+				<i class="fa fa-envelope"></i>
+			</a>
+			<a class="sidebar-nav-item" href="https://www.irreng.com">
+				<i class="fas fa-italic"></i><i class="fas fa-arrow-alt-circle-left"></i>
+			</a>
+			<a class="sidebar-nav-item" href="https://www.irrcap.com">
+				<i class="fas fa-home"></i>
+			</a>
+		</nav>
+	</div>
+</div>		<div class="content container">
+<div class="post">
+	<h1 class="post-title">[WIP] Chaos in your APIs: defect injection to test your tests</h1>
+	<span class="post-date">Thu 26 September 2019</span>
+	<h2>(aka the lost art of "Bedbugging")</h2>
+<hr>
+<p><img alt="Eeww bedbugs" src="/images/bedbug.jpg"></p>
+<blockquote>
+<p><em>"Quis custodiet ipsos custodes"</em> 
+- Juvenal</p>
+</blockquote>
+<hr>
+<h2>Let's get meta: how to test the tests?</h2>
+<p>One of the most irksome questions I've come across in QA (Automation in general) is figuring out whether you're doing what you expect. In the QA realm, this is summed up as: <strong> are my tests (or manual testers) going to catch the bugs that I expect them to catch?</strong></p>
+<p>Colleagues and friends tell tales of that time they ripped out huge swathes of test code, only to discover that it didn't matter. Bugs would 
+slip right through the cracks, defeating the entire purpose, because they weren't really testing anything but patience. It's like <a href="https://en.wikipedia.org/wiki/Cargo_cult_science">cargo cult science</a> - if you write automated tests, bugs just disappear. Right?</p>
+<p><em>So. Wrong.</em> Nevermind that automation code isn't special; it rots just like other any other code, calling forth <strong>the supervillain of the 
+software world: maintenence.</strong> Just the friction that's being added to the average developer's workflow results in negative behaviours, such 
+as skipping tests when no one is watching. </p>
+<p>Besides happenstance and heroism, I've wondered how one could programmatically address this problem (and slim down test suites in the process). I took inspiration from <a href="https://github.com/dastergon/awesome-chaos-engineering">Chaos Engineering</a> a la <a href="https://github.com/Netflix/chaosmonkey">Netflix's Chaos Monkey</a> to demonstrate one method: defect injection aka bedbugging.</p>
+<h2>Defect Injection demo - the setup</h2>
+<p>Let's start with the Conduit application (a Medium clone)[https://github.com/gothinkster/realworld] and a suite of (Cypress)[https://www.cypress.io] E2E tests (link to code is coming) that cover some basic functionality. 
+To create defects, we're going to mangle the responses &amp; response codes from the APIs that we hit during the Cypress tests. The expectation is 
+that our tests should catch the errors that we've created, and/or we see a graceful partial failure in line with expectations. We'll use 
+<a href="https://mitmproxy.org/">MITMProxy</a> to make this a reality.</p>
+<p>Since we only care about the APIs that are called during a test run, I've used the <a href="https://github.com/scottschafer/cypressautomocker">"automocker"</a> plugin, or better yet, the <a href="https://github.com/Nanciee/cypress-autorecord">"autorecord"</a> plugin to identify the 
+endpoints that we care about in each case. Note that there are a bunch of other ways to do this using traffic collection or proxies. 
+<img alt="Example of captured requests" src="/images/autorecord.png"></p>
+<p>Here's a graphic of the APIs called in each functional test:
+<img alt="APIs we hit" src="/images/api-overview.png"></p>
+<p>Now, we'll fire up MITMProxy in it's standard HTTP mode. This was tricky for me, but I'm not good at this. Let me know if I should post my notes if that'd help you... Let's set up a filter to make it easier to see what 
+we're doing:
+<code>f:conduit|api</code></p>
+<p>MITMProxy can be scripted to do some pretty fascinating stuff automatically. We're going to keep it simple and just intercept requests 
+<code>i:tags</code></p>
+<h2>Demonstrating Defect Injection for fun and profit</h2>
+<p>We're ready to rock. This screen recording (enlarge it to see the details!) shows how defect injection works with this setup. </p>
+<figure class="large">
+    <div class="myvideo">
+       <video  style="display:block; width:100%; height:100%;" autoplay controls>
+           <source src="/images/bedbug_example.mov" type="video/mp4" />
+       </video>
+    </div>
+<figcaption>A nice movie format</figcaption>
+</figure>
+
+<p>Here's what you're seeing:</p>
+<ol>
+<li>run an E2E test suite that covers homepage functionality, such as: login, article content, user settings, and popular tags. This runs without 
+error.</li>
+<li>intercept the /tags route, then run the E2E homepage test suite again. You'll notice that the "popular tags" don't show up, and we catch 
+that with our final test:</li>
+</ol>
+<div class="highlight"><pre><span></span>    <span class="nv">it</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">can see popular tags on homepage</span><span class="s2">&quot;</span>, <span class="nv">function</span><span class="ss">()</span> {
+      <span class="nv">cy</span>.<span class="k">wait</span><span class="ss">(</span><span class="mi">500</span><span class="ss">)</span><span class="c1">;</span>
+      <span class="nv">cy</span>.<span class="nv">get</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">.tag-list</span><span class="s2">&quot;</span><span class="ss">)</span>.<span class="nv">find</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">.tag-pill</span><span class="s1">&#39;</span><span class="ss">)</span>.<span class="nv">should</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">have.length.greaterThan</span><span class="s1">&#39;</span>, <span class="mi">1</span><span class="ss">)</span>
+    }<span class="ss">)</span><span class="c1">;</span>
+</pre></div>
+
+
+<p>notice that if we'd just checked that the class "tag-list" has loaded, we'd have missed this error. 
+[https://docs.google.com/presentation/d/13_E1Bx6yHviymwtvP03fTktkvzeocPio9AizSDj4JfA/edit#slide=id.p]</p>
+<p>I'd argue that this feature isn't essential so the graceful failure is pretty solid, even without an error message in the UI.</p>
+<ol>
+<li>intercept the /articles route, then run the E2E homepage test suite again. You'll notice that the feed loads forever, and we don't have a
+test failure. So - this is an opportunity to think through what we should do in this state, or to put a test in place that requires articles
+to load in &lt;5 secs or something. </li>
+</ol>
+<h2>Concluding musings</h2>
+<p>Hopefully the defect injection strategy to test your tests sparks your interest, too. There are some interesting parallels to Chaos Testing 
+a la Netflix [link], though there's something nice about how this doesn't require you to actually take down services or machines - and also 
+how directly it maps to the actual user experience. I imagine this would also have some interesting applications to root cause analysis or
+reproducing nasty bugs, since we have pretty good control and visibility at the API layer. </p>
+<p>The next step here would be to automate the extraction of APIs hit by each E2E test, and programmatically mangling responses using MITMProxy's 
+scripting facility. Also probably good to make the proxy setup a little bit easier or better documented. So do let me know if that would be 
+useful to your organization so I feel like finishing it :P</p>
+<p>One last thing: This doesn't just apply to automated testing; it can also be used to check that manual test scripts are working (and being run 
+at all - a fear that many who outsource QA have). Turns out a similar technique, called "bedbugging", was employed to ensure that bored
+radar operators didn't miss rare events [https://en.wikipedia.org/wiki/Bebugging] - spawning a popular software engineering test coverage
+technique. Implementing this with a manual test team, and learning from the fault seeding efforts of yesteryear, would be super interesting 
+as well!</p>
+</div>
+		</div>
+	</body>
+</html>
