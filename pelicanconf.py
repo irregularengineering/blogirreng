@@ -12,6 +12,10 @@ TIMEZONE = 'America/Los_Angeles'
 
 DEFAULT_LANG = 'en'
 
+# content ordering
+ARTICLE_ORDER_BY = 'reversed-date'
+NEWEST_FIRST_ARCHIVES = True
+
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
@@ -20,6 +24,17 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 THEME = "./hyde"
+
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+        'markdown.extensions.fenced_code': {},
+    },
+    'output_format': 'html5',
+}
+
 
 # Blogroll
 # LINKS = (('Pelican', 'http://getpelican.com/'),

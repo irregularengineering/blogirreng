@@ -42,14 +42,15 @@ Here's a graphic of the APIs called in each functional test:
 
 Now, we'll fire up MITMProxy in it's standard HTTP mode. This was tricky for me, but I'm not good at this. Let me know if I should post my notes if that'd help you... Let's set up a filter to make it easier to see what 
 we're doing:
-`
-f:conduit|api
-`
 
-MITMProxy can be scripted to do some pretty fascinating stuff automatically. We're going to keep it simple and just intercept requests 
-`
+```python
+f:conduit|api
+```
+
+MITMProxy can be scripted to do some pretty fascinating stuff automatically. We're going to keep it simple and just intercept requests: 
+```python
 i:tags
-`
+```
 
 ## Demonstrating Defect Injection for fun and profit
 
@@ -70,7 +71,8 @@ Here's what you're seeing:
 error.
 2. intercept the /tags route, then run the E2E homepage test suite again. You'll notice that the "popular tags" don't show up, and we catch 
 that with our final test:
-```
+
+```python
     it("can see popular tags on homepage", function() {
       cy.wait(500);
       cy.get(".tag-list").find('.tag-pill').should('have.length.greaterThan', 1)
@@ -98,7 +100,7 @@ scripting facility. Also probably good to make the proxy setup a little bit easi
 useful to your organization so I feel like finishing it :P
 
 One last thing: This doesn't just apply to automated testing; it can also be used to check that manual test scripts are working (and being run 
-at all - a fear that many who outsource QA have). Turns out a similar technique, called "bedbugging", was employed to ensure that bored
-radar operators didn't miss rare events [https://en.wikipedia.org/wiki/Bebugging] - spawning a popular software engineering test coverage
+at all - a fear that many who outsource QA have). Turns out a similar technique, called ["bedbugging"](https://en.wikipedia.org/wiki/Bebugging), was employed to ensure that bored
+radar operators didn't miss rare events  - spawning a popular software engineering test coverage
 technique. Implementing this with a manual test team, and learning from the fault seeding efforts of yesteryear, would be super interesting 
 as well!

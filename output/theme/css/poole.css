@@ -58,6 +58,13 @@ html {
   }
 }
 
+/* No `:visited` state is required by default (browsers will use `a`) */
+a {
+  color: #268bd2;
+a strong {
+  color: inherit;
+}
+
 body {
   color: #515151;
   background-color: #fff;
@@ -65,18 +72,12 @@ body {
       -ms-text-size-adjust: 100%;
 }
 
-/* No `:visited` state is required by default (browsers will use `a`) */
-a {
-  color: #268bd2;
-  text-decoration: none;
-}
-a strong {
-  color: inherit;
-}
+
 /* `:focus` is linked to `:hover` for basic accessibility */
 a:hover,
 a:focus {
   text-decoration: underline;
+  color: #268bd2;
 }
 
 /* Headings */
@@ -128,6 +129,11 @@ dd {
 }
 
 /* Misc */
+
+.sidebar-about a {
+  color:  #fff;
+}
+
 hr {
   position: relative;
   margin: 1.5rem 0;
@@ -181,6 +187,7 @@ pre code {
 
 /* Pygments via Jekyll */
 .highlight {
+  background-color: lightgray;
   margin-bottom: 1rem;
   border-radius: 4px;
 }
@@ -286,7 +293,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .container {
-  max-width: 38rem;
+  max-width: 50rem !important;
   padding-left:  1rem;
   padding-right: 1rem;
   margin-left:  auto;

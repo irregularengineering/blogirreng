@@ -9,8 +9,10 @@ sudo pelican --port 8006 --listen
 === old ===
 uses a custom hyde theme...
 workon pelican
-sudo pelican content -s pelicanconf.py -t ./hyde
+sudo pelican content -s pelicanconf.py -t ./blueidea
 sudo pelican --listen
 open http://localhost:8000/
 
 
+cd output
+python -m http.server
