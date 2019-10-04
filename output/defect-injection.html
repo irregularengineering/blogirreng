@@ -75,7 +75,7 @@ software world: maintenence.</strong> Just the friction that's being added to th
 as skipping tests when no one is watching. </p>
 <p>Besides happenstance and heroism, I've wondered how one could programmatically address this problem (and slim down test suites in the process). I took inspiration from <a href="https://github.com/dastergon/awesome-chaos-engineering">Chaos Engineering</a> a la <a href="https://github.com/Netflix/chaosmonkey">Netflix's Chaos Monkey</a> to demonstrate one method: defect injection aka bedbugging.</p>
 <h2>Defect Injection demo - the setup</h2>
-<p>Let's start with the Conduit application (a Medium clone)[https://github.com/gothinkster/realworld] and a suite of (Cypress)[https://www.cypress.io] E2E tests (link to code is coming) that cover some basic functionality. 
+<p>Let's start with the Conduit application <a href="https://github.com/gothinkster/realworld">a Medium clone</a> and a suite of <a href="https://www.cypress.io">Cypress</a> E2E tests (link to code is coming) that cover some basic functionality. 
 To create defects, we're going to mangle the responses &amp; response codes from the APIs that we hit during the Cypress tests. The expectation is 
 that our tests should catch the errors that we've created, and/or we see a graceful partial failure in line with expectations. We'll use 
 <a href="https://mitmproxy.org/">MITMProxy</a> to make this a reality.</p>
@@ -107,12 +107,15 @@ we're doing:</p>
 </figure>
 
 <p>Here's what you're seeing:</p>
-<ol>
-<li>run an E2E test suite that covers homepage functionality, such as: login, article content, user settings, and popular tags. This runs without 
-error.</li>
-<li>intercept the /tags route, then run the E2E homepage test suite again. You'll notice that the "popular tags" don't show up, and we catch 
-that with our final test:</li>
-</ol>
+<ul>
+<li>
+<p>run an E2E test suite that covers homepage functionality, such as: login, article content, user settings, and popular tags. This runs without error.</p>
+</li>
+<li>
+<p>intercept the /tags route, then run the E2E homepage test suite again. You'll notice that the "popular tags" don't show up, and we catch 
+that with our final test:</p>
+</li>
+</ul>
 <div class="highlight"><pre><span></span>    <span class="n">it</span><span class="p">(</span><span class="s2">&quot;can see popular tags on homepage&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="n">cy</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
       <span class="n">cy</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;.tag-list&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;.tag-pill&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">should</span><span class="p">(</span><span class="s1">&#39;have.length.greaterThan&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -120,18 +123,16 @@ that with our final test:</li>
 </pre></div>
 
 
-<ol>
+<ul>
 <li>intercept the /articles route, then run the E2E homepage test suite again. You'll notice that the feed loads forever, and we don't have a
 test failure. So - this is an opportunity to think through what we should do in this state, or to put a test in place that requires articles
 to load in &lt;5 secs or something. </li>
-</ol>
+</ul>
 <p>Note: if we'd just checked that the class "tag-list" has loaded, we'd have missed this error. 
 <img alt="Tag list is easy to miss" src="/images/conduit-tag-list.png"></p>
 <p>I'd argue that this feature isn't essential so the graceful failure is pretty solid, even without an error message in the UI.</p>
 <h2>Concluding musings</h2>
-<p>Hopefully the defect injection strategy to test your tests sparks your interest, too. There are some interesting parallels to Chaos Testing 
-a la Netflix [link], though there's something nice about how this doesn't require you to actually take down services or machines - and also 
-how directly it maps to the actual user experience. I imagine this would also have some interesting applications to root cause analysis or
+<p>Hopefully the defect injection strategy to test your tests sparks your interest, too. There are some interesting parallels to Chaos Testing, indeed, though there's something nice about how this doesn't require you to actually take down services or machines - and also, it's great that this directly maps to the actual user experience. I imagine this would also have some interesting applications to root cause analysis or
 reproducing nasty bugs, since we have pretty good control and visibility at the API layer. </p>
 <p>The next step here would be to automate the extraction of APIs hit by each E2E test, and programmatically mangling responses using MITMProxy's 
 scripting facility. Also probably good to make the proxy setup a little bit easier or better documented. So do let me know if that would be 

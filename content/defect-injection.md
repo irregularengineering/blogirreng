@@ -28,7 +28,7 @@ Besides happenstance and heroism, I've wondered how one could programmatically a
 
 ## Defect Injection demo - the setup
 
-Let's start with the Conduit application (a Medium clone)[https://github.com/gothinkster/realworld] and a suite of (Cypress)[https://www.cypress.io] E2E tests (link to code is coming) that cover some basic functionality. 
+Let's start with the Conduit application [a Medium clone](https://github.com/gothinkster/realworld) and a suite of [Cypress](https://www.cypress.io) E2E tests (link to code is coming) that cover some basic functionality. 
 To create defects, we're going to mangle the responses & response codes from the APIs that we hit during the Cypress tests. The expectation is 
 that our tests should catch the errors that we've created, and/or we see a graceful partial failure in line with expectations. We'll use 
 [MITMProxy](https://mitmproxy.org/) to make this a reality.
@@ -67,19 +67,17 @@ We're ready to rock. This screen recording shows how defect injection works with
 
 Here's what you're seeing:
 
-1. run an E2E test suite that covers homepage functionality, such as: login, article content, user settings, and popular tags. This runs without 
-error.
-2. intercept the /tags route, then run the E2E homepage test suite again. You'll notice that the "popular tags" don't show up, and we catch 
-that with our final test:
+* run an E2E test suite that covers homepage functionality, such as: login, article content, user settings, and popular tags. This runs without error.
 
+* intercept the /tags route, then run the E2E homepage test suite again. You'll notice that the "popular tags" don't show up, and we catch 
+that with our final test:
 ```python
     it("can see popular tags on homepage", function() {
       cy.wait(500);
       cy.get(".tag-list").find('.tag-pill').should('have.length.greaterThan', 1)
     });
 ```
-
-3. intercept the /articles route, then run the E2E homepage test suite again. You'll notice that the feed loads forever, and we don't have a
+* intercept the /articles route, then run the E2E homepage test suite again. You'll notice that the feed loads forever, and we don't have a
 test failure. So - this is an opportunity to think through what we should do in this state, or to put a test in place that requires articles
 to load in <5 secs or something. 
 
@@ -90,9 +88,7 @@ I'd argue that this feature isn't essential so the graceful failure is pretty so
 
 ## Concluding musings
 
-Hopefully the defect injection strategy to test your tests sparks your interest, too. There are some interesting parallels to Chaos Testing 
-a la Netflix [link], though there's something nice about how this doesn't require you to actually take down services or machines - and also 
-how directly it maps to the actual user experience. I imagine this would also have some interesting applications to root cause analysis or
+Hopefully the defect injection strategy to test your tests sparks your interest, too. There are some interesting parallels to Chaos Testing, though there's something nice about how this doesn't require you to actually take down services or machines - and also, it's great that this directly maps to the actual user experience. I imagine this would also have some interesting applications to root cause analysis or
 reproducing nasty bugs, since we have pretty good control and visibility at the API layer. 
 
 The next step here would be to automate the extraction of APIs hit by each E2E test, and programmatically mangling responses using MITMProxy's 
