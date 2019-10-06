@@ -1,6 +1,6 @@
 Title: When a Bug is not a Bug
-Date: 2019-09-26 10:20
-Modified: 2019-09-26 10:20
+Date: 2019-10-06 10:20
+Modified: 2019-10-06 10:20
 Category: Test
 Tags: QA, Test, Philosophy, WantFeedback, WIP, Product Management
 Slug: bug-is-a-bug
@@ -32,7 +32,7 @@ Aligning around this conclusion changes the way your entire organization operate
 
 # Extras
 Did you like this? Want to discuss it? 
-More ways to play are coming soon. But for now, email PaulATirregularengineering.com 
+More ways to play are coming soon. But for now, email paulATirregularengineering.com 
 to start a conversation (and get into our Slack community)
 
 [Post History](https://github.com/irregularengineering/blogirreng/commits/master/content/bug-is-a-bug.md)

@@ -1,9 +1,8 @@
 Title: VS Code Shortcuts
-Date: 2019-09-27 10:20
-Modified: 2019-09-27 10:20
+Date: 2019-09-01 10:20
 Category: IDE
 Tags: vscode, timesavers
-Slug: vscode-shortcuts
+Slug: vscode-terminal
 Authors: PK
 Summary: VS Code Shortcuts 
 
@@ -95,7 +94,7 @@ toggle terminal on / off
 
 # Extras
 Did you like this? Want to discuss it? 
-More ways to play are coming soon. But for now, email PaulATirregularengineering.com 
+More ways to play are coming soon. But for now, email paulATirregularengineering.com 
 to start a conversation (and get into our Slack community)
 
 [Post History](https://github.com/irregularengineering/blogirreng/commits/master/content/vscode-shortcuts.md)
