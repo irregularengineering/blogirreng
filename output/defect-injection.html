@@ -56,7 +56,7 @@
 	</div>
 </div>		<div class="content container">
 <div class="post">
-	<h1 class="post-title">[WIP] Chaos in your APIs: defect injection to test your tests</h1>
+	<h1 class="post-title">Chaos in your APIs: defect injection to test your tests</h1>
 	<span class="post-date">Thu 26 September 2019</span>
 	<h2>(aka the lost art of "Bedbugging")</h2>
 <hr>
@@ -132,7 +132,7 @@ to load in &lt;5 secs or something. </li>
 <img alt="Tag list is easy to miss" src="/images/conduit-tag-list.png"></p>
 <p>I'd argue that this feature isn't essential so the graceful failure is pretty solid, even without an error message in the UI.</p>
 <h2>Concluding musings</h2>
-<p>Hopefully the defect injection strategy to test your tests sparks your interest, too. There are some interesting parallels to Chaos Testing, indeed, though there's something nice about how this doesn't require you to actually take down services or machines - and also, it's great that this directly maps to the actual user experience. I imagine this would also have some interesting applications to root cause analysis or
+<p>Hopefully the defect injection strategy to test your tests sparks your interest, too. There are some interesting parallels to Chaos Testing, though there's something nice about how this doesn't require you to actually take down services or machines - and also, it's great that this directly maps to the actual user experience. I imagine this would also have some interesting applications to root cause analysis or
 reproducing nasty bugs, since we have pretty good control and visibility at the API layer. </p>
 <p>The next step here would be to automate the extraction of APIs hit by each E2E test, and programmatically mangling responses using MITMProxy's 
 scripting facility. Also probably good to make the proxy setup a little bit easier or better documented. So do let me know if that would be 
@@ -142,6 +142,11 @@ at all - a fear that many who outsource QA have). Turns out a similar technique,
 radar operators didn't miss rare events  - spawning a popular software engineering test coverage
 technique. Implementing this with a manual test team, and learning from the fault seeding efforts of yesteryear, would be super interesting 
 as well!</p>
+<h1>Extras</h1>
+<p>Did you like this? Want to discuss it? 
+More ways to play are coming soon. But for now, email PaulATirregularengineering.com 
+to start a conversation (and get into our Slack community)</p>
+<p><a href="https://github.com/irregularengineering/blogirreng/commits/master/content/defect-injection.md">Post History</a></p>
 </div>
 		</div>
 	</body>

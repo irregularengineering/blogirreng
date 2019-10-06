@@ -1,8 +1,8 @@
-Title: [WIP] Chaos in your APIs: defect injection to test your tests
+Title: Chaos in your APIs: defect injection to test your tests
 Date: 2019-09-26 10:20
 Modified: 2019-09-26 10:20
-Category: QA
-Tags: QA, demo, Python, WIP
+Category: Test
+Tags: QA, demo, Python, WantFeedback, Test
 Slug: defect-injection
 Authors: PK
 Summary: Chaos in your APIs: defect injection to test your tests
@@ -106,5 +106,4 @@ Did you like this? Want to discuss it?
 More ways to play are coming soon. But for now, email PaulATirregularengineering.com 
 to start a conversation (and get into our Slack community)
 
-Post History:
-https://github.com/irregularengineering/blogirreng/commits/master/content/defect-injection.md
+[Post History](https://github.com/irregularengineering/blogirreng/commits/master/content/defect-injection.md)

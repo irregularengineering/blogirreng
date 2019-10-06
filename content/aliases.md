@@ -33,10 +33,9 @@ Easier directory jumping
 
     alias .....='cd ../../../..'
 
-    # Extras
+# Extras
 Did you like this? Want to discuss it? 
 More ways to play are coming soon. But for now, email PaulATirregularengineering.com 
 to start a conversation (and get into our Slack community)
 
-Post History:
-https://github.com/irregularengineering/blogirreng/commits/master/content/aliases.md
+[Post History](https://github.com/irregularengineering/blogirreng/commits/master/content/aliases.md)
