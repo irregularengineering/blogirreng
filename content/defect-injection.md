@@ -100,3 +100,11 @@ at all - a fear that many who outsource QA have). Turns out a similar technique,
 radar operators didn't miss rare events  - spawning a popular software engineering test coverage
 technique. Implementing this with a manual test team, and learning from the fault seeding efforts of yesteryear, would be super interesting 
 as well!
+
+# Extras
+Did you like this? Want to discuss it? 
+More ways to play are coming soon. But for now, email PaulATirregularengineering.com 
+to start a conversation (and get into our Slack community)
+
+Post History:
+https://github.com/irregularengineering/blogirreng/commits/master/content/defect-injection.md
