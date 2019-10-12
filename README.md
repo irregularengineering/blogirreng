@@ -4,11 +4,11 @@
 python -mvenv venv
 source venv/activate
 pip install -r requirements.txt
-pelican --listen -sr pelicanconf.py
+pelican -lrs pelicanconf.py
 ```
 
 
 # Deployment
 ```
-sudo pelican --port 8006 --listen
+sudo pelican -lp 8006
 ```
