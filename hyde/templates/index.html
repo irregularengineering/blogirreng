@@ -15,11 +15,11 @@
 			</div>
 		{% endfor %}
 	</div>
-    {% if articles|length > DEFAULT_PAGINATION %}
-        <div class="pagination">
-            <span class="pagination-item older">Older</span>
-            <span class="pagination-item newer">Newer</span>
-        </div>
-    {% endif %}
+  {% if articles|length > DEFAULT_PAGINATION %}
+      <div class="pagination">
+          <span class="pagination-item older">Older</span>
+          <span class="pagination-item newer">Newer</span>
+      </div>
+  {% endif %}
 {% endblock %}
 
