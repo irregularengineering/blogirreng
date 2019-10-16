@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href="https://gmpg.org/xfn/11" rel="profile">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- Enable responsiveness on mobile devices-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+		<title>An Irregular Blog</title>
+
+		<!-- CSS -->
+		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
+		<link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Abril+Fatface|PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
+
+		<link rel="stylesheet" href="/theme/css/poole.css" />
+		<link rel="stylesheet" href="/theme/css/hyde.css" />
+		<link rel="stylesheet" href="/images/ieng.ico />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		    <!-- Add Font Awesome-->
+		<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+		<link rel='shortcut icon' type='image/x-icon' href='/theme/images/ieng.ico?v=3' />
+
+		<!-- RSS -->
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	</head>
+
+	<body class="theme-base-09">
+<div class="sidebar">
+	<div class="container sidebar-sticky">
+		<div class="sidebar-about">
+
+			<h1>
+				<a href="/">
+					An
+                    Irregular
+                    Blog
+                    <br>
+                        <i class="fas fa-arrow-alt-circle-left"></i>
+				</a>
+			</h1>
+			<p class="lead"></p>
+			<p class="lead"> </p>
+			<p></p>
+		</div>
+		<nav class="sidebar-nav">
+			<a class="sidebar-nav-item" href="mailto:paulATirregularengineering.com">
+				<i class="fa fa-envelope"></i>
+			</a>
+			<a class="sidebar-nav-item" href="https://www.irreng.com">
+				<i class="fas fa-italic"></i><i class="fas fa-arrow-alt-circle-left"></i>
+			</a>
+			<a class="sidebar-nav-item" href="https://www.irrcap.com">
+				<i class="fas fa-home"></i>
+			</a>
+		</nav>
+	</div>
+</div>		<div class="content container">
+<div class="post">
+	<h1 class="post-title">Three reasons to use VS Code's integrated terminal</h1>
+	<span class="post-date">Wed 16 October 2019</span>
+	<hr>
+<p><img alt="Sheep" src="/images/sheep.jpg"></p>
+<blockquote>
+<p>“Everyday, all day I have to be productive. And when I ain't productive, I get concerned.” - Young Jeezy</p>
+</blockquote>
+<hr>
+<p>I'm an IDE sheep. I admit it. I've followed <a href="https://clintjedwards.com/">Clint Edwards</a> to <a href="https://atom.io/">Atom</a> and then to <a href="https://code.visualstudio.com/">Visual Studio Code</a>. I've been pleasantly surprised this, and generally <a href="https://opensource.microsoft.com/">Microsoft's recent forays into the Open Source world</a> (including TypeScript &amp; Go to Kubernetes). </p>
+<p>Many of the parts please me (Docker integration, plugins, polyglot progamming support, and debugging especially stand out) - but the killer 
+feature for me is the <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">Integrated Terminal</a>. You can set it up to operate just 
+pretty much like your normal terminal (I use ZSH and thus .zshrc). More importantly, I've rigged it up such that pressing "ctrl-b" will run 
+the line (or selected lines) in the terminal below where I'm editing. I demonstrate both here: 
+<hr>
+<figure class="large">
+    <div class="myvideo">
+       <video  style="display:block; width:100%; height:100%;" autoplay controls>
+           <source src="/images/ctrlb-vscode.mp4" type="video/mp4" />
+       </video>
+    </div>
+<figcaption><i>(enlarge it to see the details!)</i></figcaption>
+</figure>
+<hr></p>
+<p>Cute, right? 
+<strong>Here are three reasons why VS Code's integrated terminal is not just cute, it's awesome.</strong> </p>
+<h2>Document your work, while you work</h2>
+<p>When I'm trying to troubleshoot a problem, or just working with a new project on Github, I find myself trying a ton of things out on the
+command line. I used to copy my history into a bug ticket or a note taking program like Evernote, or use <a href="https://stackoverflow.com/questions/41070403/how-to-copy-from-ipython-session-without-terminal-prompts">the IPython facility to 
+copy work from a session</a></p>
+<p>I realized that I could do this even more effectively by creating a directory of my notes, then opening it into VS Code. You can name the 
+notes by the ticket identifer or try what's worked for me: <a href="https://github.com/galfarragem/superfolder">the superfolder system</a>. </p>
+<p>Anyway, because I can run the text that I'm typing into my notes, I get a nice REPL-y experience without compromising my ability to save 
+what I've done for review later. </p>
+<p><hr>
+<figure class="large">
+    <div class="myvideo">
+       <video  style="display:block; width:100%; height:100%;" autoplay controls>
+           <source src="/images/pelican-example.mp4" type="video/mp4" />
+       </video>
+    </div>
+<figcaption><i>(enlarge it to see the details!)</i></figcaption>
+</figure>
+<hr></p>
+<h2>Create runnable documentation</h2>
+<p>I've found that a lot of documentation or blog posts that I'm trying to use will contain commands that I try to run on my own machine.
+My workflow for playing with something new - let's say, <a href="https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/02-client-tools.md">Kubernetes the Hard Way</a> - used to look like this:</p>
+<p><hr>
+<figure class="large">
+    <div class="myvideo">
+       <video  style="display:block; width:100%; height:100%;" autoplay controls>
+           <source src="/images/kthw-hard.mp4" type="video/mp4" />
+       </video>
+    </div>
+<figcaption><i>(enlarge it to see the details!)</i></figcaption>
+</figure>
+<hr></p>
+<p>It really sucks when things don't work the way you expected them to, or you need to add additional comments/notes for your future self to 
+not hate life. Hell - it'd be nice to share an annotated version with my colleagues and friends!</p>
+<p>So now - my "best self" copies the commands into my notes, and run them from there using the integrated terminal (as described above).
+Let's take a look at how this goes with the same setup I did before: </p>
+<p><hr>
+<figure class="large">
+    <div class="myvideo">
+       <video  style="display:block; width:100%; height:100%;" autoplay controls>
+           <source src="/images/kthw-runbook.mp4" type="video/mp4" />
+       </video>
+    </div>
+<figcaption><i>(enlarge it to see the details!)</i></figcaption>
+</figure>
+<hr></p>
+<p>You can see that I've annotated and commented a lot more. This isn't a great example of what actually happens, but imagine if people gave
+you a runbook file like THIS when you started a new project, instead of some markdown or screenshots that you've got to copy/paste. </p>
+<hr>
+<p><img alt="Runbook for MITM" src="/images/proxy-runbook.png"></p>
+<hr>
+<p>That's a realistic example of me trying something new and failing miserably is this file I used for <a href="https://docs.mitmproxy.org/stable/concepts-modes/#transparent-proxy">transparent proxy setup with MITMProxy</a>.</p>
+<h2>Preserve your terminal history across machines</h2>
+<p>Perhaps my favourite use of the integrated terminal is related to runnable documentation - and that's the fact that you no longer have to 
+rely only on the history you've got on the variety of machines to which you SSH. </p>
+<p>So in the normal course of a day on DevOps, I'd ssh into double digits of machines. Let's say I wanted to run similar commands on 4 VMs -
+let's pick something trivial like finding all the java processes running there. I can just ctrl+b the following lines:</p>
+<div class="highlight"><pre><span></span>ssh machine-one.domain.com
+ps -ef <span class="p">|</span> grep java <span class="p">|</span> grep -v grep <span class="p">|</span> awk <span class="s1">&#39;{ print $1&quot; &quot;$2}&#39;</span> <span class="c1">#find all java processes</span>
+</pre></div>
+
+
+<p>and be on my merry way. I get to use the IDE functionality of VS Code as well, for example, to copy and paste in the names of all the hosts
+that I need to get to - or use find/replace on a multi-line set of commands I'd saved for use elsewhere. </p>
+<p>There's also the fact that I can further annotate these commands for easy discovery later... more on this in another post.</p>
+<h2>My Next Steps - aka other related things that I'll post for you in the future</h2>
+<ul>
+<li>automatically extract out the silly prompt symbols (e.g. $, &gt;, #) from project documentation</li>
+<li>more hotkeys for use with the integrated terminal! </li>
+<li>storing your savedhistory in version control, and making it easier to search</li>
+<li>intelligent documentation / runbooks, using Jupyter notebooks </li>
+</ul>
+<h1>Extras</h1>
+<p>Did you like this? Want to discuss it? 
+More ways to play are coming soon. But for now, email paulATirregularengineering.com 
+to start a conversation (and get into our Slack community)</p>
+<p><a href="https://github.com/irregularengineering/blogirreng/commits/master/content/vscode-across-machines.md">Post History</a></p>
+</div>
+		</div>
+	</body>
+</html>

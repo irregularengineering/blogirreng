@@ -15,6 +15,13 @@ pip install -r requirements.txt
 pelican -lrs pelicanconf.py
 ```
 
+or for development (typically port 8000)
+
+```sh
+workon pelican
+sudo pelican content -s pelicanconf.py -t ./hyde
+sudo pelican --listen
+```
 
 ### Deployment
 ```sh

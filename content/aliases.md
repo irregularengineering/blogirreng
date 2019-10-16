@@ -1,6 +1,5 @@
 Title: Aliases
-Date: 2019-09-26 10:20
-Modified: 2019-09-26 10:20
+Date: 2019-07-26 10:20
 Category: Bash
 Tags: bash, timesavers
 Slug: aliases
